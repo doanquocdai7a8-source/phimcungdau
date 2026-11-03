@@ -1,0 +1,472 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đằng Sau Uy Quyền Chốn Hậu Cung</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #fff0f5;
+    color: #713b50;
+    overflow-x: hidden;
+}
+
+/* THANH ĐIỀU HƯỚNG */
+nav {
+    background: linear-gradient(90deg, #8f405e, #c47791, #8f405e);
+    padding: 17px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    box-shadow: 0 4px 15px #9b536855;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    color: #fff3d7;
+    font-size: 21px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #ffe3a6;
+}
+
+/* BANNER */
+.hero {
+    min-height: 570px;
+    background:
+        linear-gradient(#421c35a8, #421c3580),
+        url("https://images.unsplash.com/photo-1519681393784-d120267933ba");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero-content {
+    max-width: 900px;
+    color: white;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 6vw, 60px);
+    color: #ffe5b5;
+    letter-spacing: 3px;
+    text-shadow: 2px 3px 10px #250d1b;
+    margin-bottom: 25px;
+}
+
+.hero p {
+    font-size: 19px;
+    line-height: 1.8;
+    font-style: italic;
+    color: #fff0f5;
+}
+
+.hero-line {
+    width: 150px;
+    height: 2px;
+    background: #e8bd83;
+    margin: 25px auto;
+}
+
+/* TIÊU ĐỀ */
+.section {
+    padding: 75px 7%;
+    text-align: center;
+}
+
+.section-title {
+    font-size: clamp(27px, 4vw, 38px);
+    color: #984c69;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.section-subtitle {
+    color: #a66b80;
+    font-style: italic;
+    margin-bottom: 45px;
+    line-height: 1.7;
+}
+
+/* DANH SÁCH PHIM */
+.movie-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.movie-card {
+    background: #fffafc;
+    border: 1px solid #e8bfd0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 7px 20px #9b536822;
+    transition: 0.35s;
+}
+
+.movie-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px #9b536844;
+}
+
+.movie-card img {
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+    display: block;
+}
+
+.movie-info {
+    padding: 24px 20px 28px;
+}
+
+.movie-info h3 {
+    color: #93445f;
+    font-size: 23px;
+    margin-bottom: 12px;
+}
+
+.movie-info p {
+    color: #876273;
+    line-height: 1.7;
+    min-height: 75px;
+    font-size: 15px;
+}
+
+.detail-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 22px;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #a64f70, #d18aa4);
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.detail-button:hover {
+    background: #79354f;
+    transform: scale(1.04);
+}
+
+/* TRANG TRÍ */
+.divider {
+    width: 100px;
+    height: 2px;
+    background: #d49aaf;
+    margin: 25px auto;
+}
+
+/* LỜI DẪN */
+.quote-section {
+    background: linear-gradient(120deg, #8d405c, #c47b96);
+    padding: 75px 10%;
+    text-align: center;
+    color: #fff3e4;
+}
+
+.quote-section h2 {
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+
+.quote-section p {
+    font-size: 19px;
+    line-height: 2;
+    font-style: italic;
+}
+
+/* FOOTER */
+footer {
+    background: #54283e;
+    color: #f9dce7;
+    text-align: center;
+    padding: 30px 15px;
+    line-height: 2;
+    font-size: 14px;
+}
+
+/* HOA RƠI */
+#petal-box {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 20;
+}
+
+.petal {
+    position: absolute;
+    top: -30px;
+    color: #ed9fbb;
+    opacity: 0.75;
+    animation: falling linear infinite;
+    text-shadow: 0 0 5px white;
+}
+
+@keyframes falling {
+    0% {
+        transform: translateY(-30px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ĐIỆN THOẠI */
+@media (max-width: 600px) {
+    nav {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .logo {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav a {
+        margin: 5px;
+        font-size: 13px;
+    }
+
+    .hero {
+        min-height: 470px;
+    }
+
+    .section {
+        padding: 55px 6%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="petal-box"></div>
+
+<!-- THANH ĐIỀU HƯỚNG -->
+<nav>
+    <div class="logo">✧ PHƯỢNG NGHI CUNG ✧</div>
+
+    <div>
+        <a href="#trangchu">Trang chủ</a>
+        <a href="#tacpham">Tác phẩm</a>
+        <a href="#hau-cung">Hậu cung</a>
+        <a href="#loidan">Lời dẫn</a>
+    </div>
+</nav>
+
+<!-- BANNER -->
+<header class="hero" id="trangchu">
+    <div class="hero-content">
+        <h1>ĐẰNG SAU UY QUYỀN<br>CHỐN HẬU CUNG</h1>
+
+        <div class="hero-line"></div>
+
+        <p>
+            “Nhất nhập thâm cung tựa bước vào mồ —<br>
+            Phật diện tàng tâm xà, phượng vị táng bạch cốt.”
+        </p>
+    </div>
+</header>
+
+<!-- GIỚI THIỆU TÁC PHẨM -->
+<section class="section" id="tacpham">
+    <h2 class="section-title">✧ TUYỂN TẬP CUNG ĐẤU ✧</h2>
+
+    <div class="divider"></div>
+
+    <p class="section-subtitle">
+        Một bước tiến vào thâm cung, vạn bước chẳng thể quay đầu.<br>
+        Nơi quyền lực, ân sủng và lòng người đan xen thành những bi kịch.
+    </p>
+
+    <div class="movie-container">
+
+        <!-- CHÂN HOÀN TRUYỆN -->
+        <div class="movie-card">
+            <img
+                src="https://upload.wikimedia.org/wikipedia/vi/thumb/4/4c/Empresses_in_the_Palace_poster.jpg/250px-Empresses_in_the_Palace_poster.jpg"
+                alt="Chân Hoàn Truyện"
+            >
+
+            <div class="movie-info">
+                <h3>Chân Hoàn Truyện</h3>
+
+                <p>
+                    Từ một thiếu nữ ngây thơ bước vào hậu cung,
+                    Chân Hoàn dần trưởng thành giữa những cuộc tranh đấu
+                    và âm mưu chốn cung đình.
+                </p>
+
+                <a
+                    class="detail-button"
+                    href="https://youtube.com/playlist?list=PL2RaoMSDpp_lGooQNkI1ivEshgX3oYot0&si=hFAB0r4iD6zt8emz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    XEM TRỌN BỘ PHIM ✧
+                </a>
+            </div>
+        </div>
+
+        <!-- NHƯ Ý TRUYỆN -->
+        <div class="movie-card">
+            <img
+                src="https://file.digitaling.com/eImg/uimages/20180821/1534784260173200.jpg"
+                alt="Hậu Cung Như Ý Truyện"
+            >
+
+            <div class="movie-info">
+                <h3>Hậu Cung Như Ý Truyện</h3>
+
+                <p>
+                    Chuyện tình và số phận của Như Ý giữa chốn
+                    hoàng cung đầy biến động, nơi tình nghĩa dần
+                    bị bào mòn bởi quyền lực.
+                </p>
+
+                <a
+                    class="detail-button"
+                    href="https://youtube.com/playlist?list=PLh4trvZExvP2kuCLuj6GZNcrn_eNp5svN&si=ZehcqCCO47X0JBmc"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    XEM TRỌN BỘ PHIM ✧
+                </a>
+            </div>
+        </div>
+
+        <!-- DIÊN HI CÔNG LƯỢC -->
+        <div class="movie-card">
+            <img
+                src="https://upload.wikimedia.org/wikipedia/vi/thumb/7/7b/Story_of_Yanxi_Palace_poster.jpg/250px-Story_of_Yanxi_Palace_poster.jpg"
+                alt="Diên Hi Công Lược"
+            >
+
+            <div class="movie-info">
+                <h3>Diên Hi Công Lược</h3>
+
+                <p>
+                    Ngụy Anh Lạc tiến cung tìm kiếm chân tướng,
+                    từng bước đối diện với những âm mưu và sóng gió
+                    nơi Tử Cấm Thành.
+                </p>
+
+                <a
+                    class="detail-button"
+                    href="https://youtube.com/playlist?list=PLhiuztDWpBnUHMPaNGKKl3O8y5u6UL3TF&si=WCzDwRtQasIxMxbw"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    XEM TRỌN BỘ PHIM ✧
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- HẬU CUNG -->
+<section class="quote-section" id="hau-cung">
+    <h2>✧ HẬU CUNG THÂM TỰA BIỂN ✧</h2>
+
+    <p>
+        Một khi đã bước chân vào cung cấm,<br>
+        chẳng ai còn có thể giữ mãi dáng vẻ ban đầu.<br>
+        Có người dùng chân tình đổi lấy tuyệt vọng,<br>
+        có người lấy mưu kế đổi lấy quyền lực.<br>
+        Sau mỗi lớp rèm châu, là một câu chuyện chưa từng được kể.
+    </p>
+</section>
+
+<!-- LỜI DẪN -->
+<section class="section" id="loidan">
+    <h2 class="section-title">✧ ĐÔI LỜI VỀ HẬU CUNG ✧</h2>
+
+    <div class="divider"></div>
+
+    <p class="section-subtitle">
+        Hậu cung không chỉ là nơi tranh giành ân sủng,
+        mà còn là thế giới của những thân phận bị trói buộc
+        bởi lễ giáo, địa vị và quyền lực hoàng gia.<br><br>
+
+        Đằng sau vẻ vàng son lộng lẫy là những số phận,
+        những lựa chọn và những cái giá phải trả
+        cho hai chữ vinh hoa.
+    </p>
+</section>
+
+<!-- CHÂN TRANG -->
+<footer>
+    <p>✧ ĐẰNG SAU UY QUYỀN CHỐN HẬU CUNG ✧</p>
+    <p>Thiết kế với cảm hứng từ những bộ phim cung đấu Trung Hoa</p>
+    <p>© 2026 — PHƯỢNG NGHI CUNG</p>
+</footer>
+
+<script>
+/* TẠO HIỆU ỨNG HOA RƠI */
+const petalBox = document.getElementById("petal-box");
+
+const flowers = ["✿", "❀", "✧", "❃"];
+
+for (let i = 0; i < 35; i++) {
+    const petal = document.createElement("span");
+
+    petal.className = "petal";
+    petal.innerHTML = flowers[
+        Math.floor(Math.random() * flowers.length)
+    ];
+
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.fontSize = (12 + Math.random() * 19) + "px";
+    petal.style.animationDuration = (7 + Math.random() * 9) + "s";
+    petal.style.animationDelay = (Math.random() * 10) + "s";
+
+    petalBox.appendChild(petal);
+}
+</script>
+
+</body>
+</html>
